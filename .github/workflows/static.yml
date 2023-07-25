@@ -32,12 +32,12 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.11.4'  # Replace 'x' with the appropriate version of Python you are using for your app
-      - name: Install Flask
+      - name: Install dependencies
         run: |
-          pip install flask
+          pip install -r requirements.txt
       - name: Generate static content
         run: |
-          python main.py  # Replace 'main.py' with the actual filename of your Flask app
+          python main.py
 
       # Add any other necessary steps to build the static HTML file (if needed)
 
