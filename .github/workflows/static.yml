@@ -37,7 +37,13 @@ jobs:
           pip install -r requirements.txt
       - name: Generate static content
         run: |
-          python main.py
+          python main.py &  # Start Flask app in the background
+
+          # Wait for the app to be up and running
+          sleep 5
+
+          # Test if the app is running
+          curl -I http://localhost:8080/
 
       # Add any other necessary steps to build the static HTML file (if needed)
 
