@@ -34,7 +34,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'  # Replace 'x' with the appropriate version of Python you are using for your app
+          python-version: '3.11.4'
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
