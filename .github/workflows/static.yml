@@ -22,11 +22,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  # Build and deploy job
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,10 +31,18 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.11.4'
-      - name: Install dependencies
+          python-version: '3.11.4'  # Replace 'x' with the appropriate version of Python you are using for your app
+      - name: Install Flask
         run: |
-          pip install -r requirements.txt
-      - name: Start Flask app
+          pip install flask
+      - name: Generate static content
         run: |
-          python main.py
+          python main.py  # Replace 'main.py' with the actual filename of your Flask app
+
+      # Add any other necessary steps to build the static HTML file (if needed)
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./path/to/static-html-folder  # Change this to the path containing your static HTML file
