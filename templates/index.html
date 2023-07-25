@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href='../static/main.css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&display=swap">
     <title>QR code generator</title>
 </head>
@@ -15,9 +15,19 @@
         <h2>Insert a link below to generate your QR Code 👇🏼</h2>
     </div>
     <form action="/" method="POST">
-        <input type="text" name="link">
+        <input type="text" name="qrInput">
         <button type="submit">Generate QR Code</button>
     </form>
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+    {% if data %}
+    <div class="generated">
+        <img src="{{ data }}" alt="QR image">
+        <p>Here is your QR Code 🚀</p>
+        <a href="{{ data }}" download="qrcode.png">Download QR Code</a>
+    </div>
+    {% endif %}
 </body>
 
 </html>
