@@ -3,7 +3,7 @@ import qrcode
 from io import BytesIO
 from base64 import b64encode
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="/static", static_folder="static")
 
 
 @app.route("/")
@@ -35,5 +35,5 @@ def generateQR():
     return render_template("index.html", data=b64EncodeQrImg)
 
 
-#if __name__ == "__main__":
-#    app.run(debug=True, host="0.0.0.0", port=8080)
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=8080)
