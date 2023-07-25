@@ -31,7 +31,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.11.4'  # Replace 'x' with the appropriate version of Python you are using for your app
+          python-version: '3.x'  # Replace 'x' with the appropriate version of Python you are using for your app
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
@@ -52,3 +52,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./path/to/static-html-folder  # Change this to the path containing your static HTML file
+          publish_branch: gh-pages  # Specify the branch where the static content will be deployed (gh-pages branch)
+          force_orphan: true  # Ensure the deployment branch is not a part of the repository's commit history
